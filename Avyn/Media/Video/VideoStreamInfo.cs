@@ -15,35 +15,35 @@ namespace Avyn.Media.Video
         /// <summary>
         ///     Gets the start time of the video.
         /// </summary>
-        public TimeSpan StartTime { get; }
+        public TimeSpan StartTime { get; init; }
         /// <summary>
         ///     Gets the duration of the video.
         /// </summary>
-        public TimeSpan Duration { get; }
+        public TimeSpan Duration { get; init; }
         /// <summary>
         ///     Gets the codec used for the media stream.
         /// </summary>
-        public string Codec { get; }
+        public string Codec { get; init; }
         /// <summary>
         ///     Gets the pixel format of this video.
         /// </summary>
-        public string PixelFormat { get; }
+        public string PixelFormat { get; init; }
         /// <summary>
         ///     Gets the width of the video in pixels.
         /// </summary>
-        public int Width { get; }
+        public int Width { get; init; }
         /// <summary>
         ///     Gets the height of the video in pixels.
         /// </summary>
-        public int Height { get; }
+        public int Height { get; init; }
         /// <summary>
         ///     Gets the frame rate of the video in frames per second.
         /// </summary>
-        public double FrameRate { get; }
+        public double FrameRate { get; init; }
         /// <summary>
         ///     Gets the bitrate of this video in bits per second.
         /// </summary>
-        public int Bitrate { get; }
+        public int Bitrate { get; init; }
         /// <summary>
         ///     Gets whether this VideoFormat is empty.
         /// </summary>

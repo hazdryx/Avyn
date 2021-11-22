@@ -7,27 +7,27 @@ namespace Avyn.Media.Audio
         /// <summary>
         ///     Gets the start time of the audio.
         /// </summary>
-        public TimeSpan StartTime { get; }
+        public TimeSpan StartTime { get; init; }
         /// <summary>
         ///     Gets the duration of the audio.
         /// </summary>
-        public TimeSpan Duration { get; }
+        public TimeSpan Duration { get; init; }
         /// <summary>
         ///     Gets the codec used for the media stream.
         /// </summary>
-        public string Codec { get; }
+        public string Codec { get; init; }
         /// <summary>
         ///     Gets the number of channels.
         /// </summary>
-        public int Channels { get; }
+        public int Channels { get; init; }
         /// <summary>
         ///     Gets the sample rate in samples per second (Hz).
         /// </summary>
-        public int SampleRate { get; }
+        public int SampleRate { get; init; }
         /// <summary>
         ///     Gets the bits per sample.
         /// </summary>
-        public int BitsPerSample { get; }
+        public int BitsPerSample { get; init; }
         /// <summary>
         ///     Gets whether this AudioFormat is empty.
         /// </summary>
