@@ -23,6 +23,10 @@ namespace Avyn.Media.Video
         /// </summary>
         public int FrameIndex { get; private set; }
         /// <summary>
+        ///     Gets the duration of the video.
+        /// </summary>
+        public TimeSpan? Duration { get; private set; }
+        /// <summary>
         ///     Gets or sets the pixel buffer size.
         /// </summary>
         public int BufferSize { get; set; } = 32768;
@@ -45,12 +49,6 @@ namespace Avyn.Media.Video
 
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "VideoFileReader")).Start();
         }
-
-        public TimeSpan Position
-        {
-            get => new TimeSpan((long)Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
-        }
-        public TimeSpan? Duration { get; private set; }
 
         /// <summary>
         ///     Reads the next frame in the video.

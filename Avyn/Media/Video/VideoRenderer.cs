@@ -13,21 +13,19 @@ namespace Avyn.Media.Video
         ///     Gets the current frame index.
         /// </summary>
         public int FrameIndex { get; private set; }
+        /// <summary>
+        ///     Gets the duration of the video.
+        /// </summary>
+        public TimeSpan? Duration { get; private set; }
         public bool CanRead => true;
         public bool CanWrite => false;
-
-        public TimeSpan Position
-        {
-            get => new TimeSpan((long) Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
-        }
-        public TimeSpan? Duration => VideoFormat.Duration;
 
         public virtual bool ReadFrame(FastBitmap bmp)
         {
             if (bmp.Width != VideoFormat.Width || bmp.Height != VideoFormat.Height) throw new ArgumentException("The FastBitmap has invlid dimensions.");
-            if (Duration.HasValue && Position >= Duration.Value) return false;
+            if (Duration.HasValue && this.GetPosition() >= Duration.Value) return false;
 
-            if (RenderFrame(bmp, Position))
+            if (RenderFrame(bmp, this.GetPosition()))
             {
                 FrameIndex++;
                 return true;

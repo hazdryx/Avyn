@@ -21,6 +21,10 @@ namespace Avyn.Media.Video
         ///     Gets the current frame index.
         /// </summary>
         public int FrameIndex { get; private set; }
+        /// <summary>
+        ///     Gets the duration of the video.
+        /// </summary>
+        public TimeSpan? Duration { get; private set; }
         public bool CanRead => false;
         public bool CanWrite => true;
 
@@ -34,12 +38,6 @@ namespace Avyn.Media.Video
             ffmpeg.Start();
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "VideoFileWriter")).Start();
         }
-
-        public TimeSpan Position
-        {
-            get => new TimeSpan((long)Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
-        }
-        public TimeSpan? Duration => Position;
 
         /// <summary>
         ///     Writes a frame to the video file.

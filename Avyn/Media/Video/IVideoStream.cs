@@ -26,10 +26,6 @@ namespace Avyn.Media.Video
         /// </summary>
         int FrameIndex { get; }
         /// <summary>
-        ///     Gets the current position of the video.
-        /// </summary>
-        TimeSpan Position { get; }
-        /// <summary>
         ///     Gets the duration of the video.
         /// </summary>
         TimeSpan? Duration { get; }
