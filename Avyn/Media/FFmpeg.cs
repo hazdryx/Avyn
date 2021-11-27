@@ -24,13 +24,13 @@ namespace Avyn.Media
         /// <returns>The ffmpeg process which was started.</returns>
         public static Process Query(string query, params object[] args)
         {
-            string arguments = string.Format(query, args);
-            string[] tokens = arguments.Split(' ');
+            string[] tokens = query.Split(' ');
             for (int i = 0; i < tokens.Length; i++)
             {
                 if (tokens[i].StartsWith("@")) tokens[i] = "\"" + tokens[i].Substring(1) + "\"";
             }
-            arguments = "-hide_banner " + string.Join(" ", tokens);
+            string arguments = "-hide_banner " + string.Format(string.Join(" ", tokens), args);
+
             Debug.WriteLine("FFmpeg Query | " + arguments);
 
             Process ffmpeg = new Process
