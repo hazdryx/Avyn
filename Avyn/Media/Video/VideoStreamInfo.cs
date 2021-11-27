@@ -49,7 +49,7 @@ namespace Avyn.Media.Video
         /// </summary>
         public bool IsEmpty { get; private set; }
 
-        public VideoStreamInfo(int width, int height, double frameRate, TimeSpan start, TimeSpan duration, string codec, string pixelFormat, int bitrate)
+        public VideoStreamInfo(int width, int height, double frameRate, TimeSpan start, TimeSpan? duration, string codec, string pixelFormat, int bitrate)
         {
             this.StartTime = start;
             this.Duration = duration;
@@ -61,7 +61,7 @@ namespace Avyn.Media.Video
             this.Bitrate = bitrate;
             this.IsEmpty = false;
         }
-        public VideoStreamInfo(int width, int height, double frameRate, TimeSpan duration)
+        public VideoStreamInfo(int width, int height, double frameRate, TimeSpan? duration)
         {
             this.StartTime = TimeSpan.Zero;
             this.Duration = duration;

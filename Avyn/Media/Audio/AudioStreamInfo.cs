@@ -33,7 +33,7 @@ namespace Avyn.Media.Audio
         /// </summary>
         public bool IsEmpty { get; private set; }
 
-        public AudioStreamInfo(TimeSpan start, TimeSpan duration, string codec, int channels, int sampleRate, int bitsPerSample)
+        public AudioStreamInfo(TimeSpan start, TimeSpan? duration, string codec, int channels, int sampleRate, int bitsPerSample)
         {
             this.StartTime = start;
             this.Duration = duration;
