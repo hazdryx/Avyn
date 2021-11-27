@@ -41,7 +41,7 @@ namespace Avyn.Media.Video
         {
             get => new TimeSpan((long)Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
         }
-        public TimeSpan Duration => Position;
+        public TimeSpan? Duration => Position;
 
         /// <summary>
         ///     Writes a frame to the video file.

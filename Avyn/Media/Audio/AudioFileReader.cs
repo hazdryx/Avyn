@@ -22,7 +22,7 @@ namespace Avyn.Media.Audio
             AudioStreamInfo format = info.AudioStream;
             if (format.IsEmpty) throw new ArgumentException("File does not contain audio.");
 
-            Duration = info.Duration;
+            Duration = (TimeSpan) info.Duration;
             AudioFormat = format;
 
             ffmpeg = FFmpeg.Query("-i @{0} -f s16le -", filename);

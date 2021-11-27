@@ -32,7 +32,7 @@ namespace Avyn.Media.Video
         /// <summary>
         ///     Gets the duration of the video.
         /// </summary>
-        TimeSpan Duration { get; }
+        TimeSpan? Duration { get; }
 
         /// <summary>
         ///     Writes a frame to the video file.

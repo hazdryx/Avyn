@@ -11,7 +11,7 @@ namespace Avyn.Media
         /// <summary>
         ///     Gets the duration of the media stream.
         /// </summary>
-        TimeSpan Duration { get; init; }
+        TimeSpan? Duration { get; init; }
         /// <summary>
         ///     Gets the codec used for the media stream.
         /// </summary>

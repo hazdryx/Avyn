@@ -15,7 +15,7 @@ namespace Avyn.Media
         /// <summary>
         ///     Gets the duration of the media.
         /// </summary>
-        public TimeSpan Duration { get; }
+        public TimeSpan? Duration { get; }
         /// <summary>
         ///     Gets the short format name (usually used after -f in FFmpeg).
         /// </summary>
@@ -29,7 +29,7 @@ namespace Avyn.Media
         /// </summary>
         public IMediaStreamInfo[] Streams { get; }
 
-        public MediaInfo(TimeSpan duration, string formatCode, string formatName, IMediaStreamInfo[] streams)
+        public MediaInfo(TimeSpan? duration, string formatCode, string formatName, IMediaStreamInfo[] streams)
         {
             this.Duration = duration;
             this.FormatCode = formatCode;

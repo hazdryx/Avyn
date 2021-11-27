@@ -36,7 +36,7 @@ namespace Avyn.Media.Video
             VideoStreamInfo format = info.VideoStream;
             if (format.IsEmpty) throw new ArgumentException("File does not contain any video.");
 
-            Duration = info.Duration;
+            Duration = (TimeSpan) info.Duration;
             VideoFormat = format;
 
             // Include -vf scale=-1:360 for rescaling.
@@ -50,7 +50,7 @@ namespace Avyn.Media.Video
         {
             get => new TimeSpan((long)Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
         }
-        public TimeSpan Duration { get; private set; }
+        public TimeSpan? Duration { get; private set; }
 
         /// <summary>
         ///     Reads the next frame in the video.

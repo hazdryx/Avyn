@@ -20,11 +20,12 @@ namespace Avyn.Media.Video
         {
             get => new TimeSpan((long) Math.Round(FrameIndex / VideoFormat.FrameRate * TimeSpan.TicksPerSecond));
         }
-        public TimeSpan Duration => VideoFormat.Duration;
+        public TimeSpan? Duration => VideoFormat.Duration;
 
         public virtual bool ReadFrame(FastBitmap bmp)
         {
             if (bmp.Width != VideoFormat.Width || bmp.Height != VideoFormat.Height) throw new ArgumentException("The FastBitmap has invlid dimensions.");
+            if (Duration.HasValue && Position >= Duration.Value) return false;
 
             if (RenderFrame(bmp, Position))
             {
