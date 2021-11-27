@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Hazdryx.Avyn</RootNamespace>
+    <RootNamespace>Avyn</RootNamespace>
     <PackageId>Avyn</PackageId>
     <Authors>Christopher Bishop</Authors>
     <Copyright>Copyright © Christopher Bishop 2021</Copyright>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/hazdryx/Avyn</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Product>Avyn</Product>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Description>A .NET library for audio and video IO.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AnalysisLevel>latest</AnalysisLevel>
