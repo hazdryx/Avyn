@@ -36,7 +36,7 @@ namespace Avyn.Media.Video
             VideoStreamInfo format = info.VideoStream;
             if (format.IsEmpty) throw new ArgumentException("File does not contain any video.");
 
-            Duration = (TimeSpan) info.Duration;
+            Duration = info.Duration;
             VideoFormat = format;
 
             // Include -vf scale=-1:360 for rescaling.
@@ -101,6 +101,8 @@ namespace Avyn.Media.Video
 
             ffmpeg.WaitForExit();
             ffmpeg.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Avyn.Media.Audio
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "AudioFileWriter")).Start();
         }
 
-        public TimeSpan Duration { get; private set; }
+        public TimeSpan? Duration { get; private set; }
 
         //
         // WRITING METHODS
@@ -72,6 +72,7 @@ namespace Avyn.Media.Audio
         {
             Close();
             ffmpeg.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

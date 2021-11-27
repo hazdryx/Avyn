@@ -15,19 +15,19 @@ namespace Avyn.Media
         /// <summary>
         ///     Gets the duration of the media.
         /// </summary>
-        public TimeSpan? Duration { get; }
+        public TimeSpan? Duration { get; init; }
         /// <summary>
         ///     Gets the short format name (usually used after -f in FFmpeg).
         /// </summary>
-        public string FormatCode { get; }
+        public string FormatCode { get; init; }
         /// <summary>
         ///     Gets the format name of the media.
         /// </summary>
-        public string FormatName { get; }
+        public string FormatName { get; init; }
         /// <summary>
         ///     Gets stream information for all media streams.
         /// </summary>
-        public IMediaStreamInfo[] Streams { get; }
+        public IMediaStreamInfo[] Streams { get; init; }
 
         public MediaInfo(TimeSpan? duration, string formatCode, string formatName, IMediaStreamInfo[] streams)
         {
@@ -56,7 +56,7 @@ namespace Avyn.Media
             int n = -1;
             foreach (IMediaStreamInfo format in Streams)
             {
-                if (format is VideoStreamInfo && ++n == index) return (VideoStreamInfo)format;
+                if (format is VideoStreamInfo info && ++n == index) return info;
             }
             return VideoStreamInfo.Empty();
         }
@@ -71,7 +71,7 @@ namespace Avyn.Media
             int n = -1;
             foreach (IMediaStreamInfo format in Streams)
             {
-                if (format is AudioStreamInfo && ++n == index) return (AudioStreamInfo)format;
+                if (format is AudioStreamInfo info && ++n == index) return info;
             }
             return AudioStreamInfo.Empty();
         }
@@ -204,7 +204,7 @@ namespace Avyn.Media
                 {
                     if (!line.StartsWith("[")) throw new FormatException("Must start with a TAG.");
 
-                    name = line.Substring(1, line.Length - 2);
+                    name = line[1..^1];
                     section = new Dictionary<string, string>();
                 }
                 else if (line == "[/" + name + "]") break;

@@ -22,14 +22,14 @@ namespace Avyn.Media.Audio
             AudioStreamInfo format = info.AudioStream;
             if (format.IsEmpty) throw new ArgumentException("File does not contain audio.");
 
-            Duration = (TimeSpan) info.Duration;
+            Duration = info.Duration;
             AudioFormat = format;
 
             ffmpeg = FFmpeg.Query("-i @{0} -f s16le -", filename);
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "AudioFileReader")).Start();
         }
 
-        public TimeSpan Duration { get; private set; }
+        public TimeSpan? Duration { get; private set; }
 
         //
         // READING METHODS
@@ -96,7 +96,9 @@ namespace Avyn.Media.Audio
             catch (Win32Exception) { }
 
             ffmpeg.WaitForExit();
-            ffmpeg.Dispose();  
+            ffmpeg.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 }

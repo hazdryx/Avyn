@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avyn", "Avyn\Avyn.csproj", "{2721BF3C-9B8F-4608-9B0C-2D01324EC057}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avyn", "Avyn\Avyn.csproj", "{2721BF3C-9B8F-4608-9B0C-2D01324EC057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avyn.Tests", "Avyn.Tests\Avyn.Tests.csproj", "{BD05B16D-A955-4F67-98BA-1345A7B3A795}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avyn.Tests", "Avyn.Tests\Avyn.Tests.csproj", "{BD05B16D-A955-4F67-98BA-1345A7B3A795}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F59BE2E4-83C1-43E1-9E16-8CB3AD92346D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

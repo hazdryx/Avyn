@@ -1,9 +1,7 @@
 ﻿using Hazdryx.Drawing;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Avyn.Media.Video
@@ -78,6 +76,7 @@ namespace Avyn.Media.Video
         {
             Close();
             ffmpeg.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

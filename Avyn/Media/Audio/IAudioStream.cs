@@ -19,7 +19,7 @@ namespace Avyn.Media.Audio
         /// <summary>
         ///     Gets the duration of the audio stream.
         /// </summary>
-        TimeSpan Duration { get; }
+        TimeSpan? Duration { get; }
 
 
         /// <summary>

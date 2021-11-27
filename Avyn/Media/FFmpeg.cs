@@ -27,7 +27,7 @@ namespace Avyn.Media
             string[] tokens = query.Split(' ');
             for (int i = 0; i < tokens.Length; i++)
             {
-                if (tokens[i].StartsWith("@")) tokens[i] = "\"" + tokens[i].Substring(1) + "\"";
+                if (tokens[i].StartsWith("@")) tokens[i] = string.Concat("\"", tokens[i].AsSpan(1), "\"");
             }
             string arguments = "-hide_banner " + string.Format(string.Join(" ", tokens), args);
 
@@ -97,7 +97,7 @@ namespace Avyn.Media
         public static void Interweave(string videoPath, string audioPath, string filename)
         {
             MediaInfo info = MediaInfo.FromFile(videoPath);
-            Interweave(videoPath, audioPath, info.Duration, filename);
+            Interweave(videoPath, audioPath, info.Duration.Value, filename);
         }
     }
 }
