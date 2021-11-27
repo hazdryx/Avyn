@@ -1,0 +1,53 @@
+﻿using System;
+using Avyn.Media.Audio;
+using Avyn.Media.Video;
+using Hazdryx.Drawing;
+
+namespace Avyn.Media
+{
+    /// <summary>
+    ///     Utilities for making IVideoStreams easier.
+    /// </summary>
+    public static class MediaUtil
+    {
+        /// <summary>
+        ///     Pipes video frames from this stream to the destination stream.
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dest"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <returns>The destination stream for chaining.</returns>
+        public static IVideoStream Pipe(this IVideoStream src, IVideoStream dest)
+        {
+            if (!src.CanRead || !dest.CanWrite) throw new InvalidOperationException("Invalid stream types.");
+
+            FastBitmap buffer = new FastBitmap(src.VideoFormat.Width, src.VideoFormat.Height);
+            while (src.ReadFrame(buffer))
+            {
+                dest.WriteFrame(buffer);
+            }
+
+            return dest;
+        }
+        /// <summary>
+        ///     Pipes audio samples from this stream to the destination stream.
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dest"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <returns>The destination stream for chaining.</returns>
+        public static IAudioStream Pipe(this IAudioStream src, IAudioStream dest)
+        {
+            if (!src.CanRead || !dest.CanWrite) throw new InvalidOperationException("Invalid stream types.");
+
+            int read;
+            short[] buffer = new short[4096];
+            while ((read = src.ReadSamples(buffer, 0, buffer.Length)) > 0)
+            {
+                dest.WriteSamples(buffer, 0, read);
+            }
+
+            return dest;
+        }
+    }
+}
