@@ -1,4 +1,5 @@
 ﻿using System;
+using Avyn.Media.Extensions;
 using Hazdryx.Drawing;
 
 namespace Avyn.Media.Video
@@ -8,15 +9,15 @@ namespace Avyn.Media.Video
         /// <summary>
         ///     Gets the video information for the video being read.
         /// </summary>
-        public VideoStreamInfo VideoFormat { get; private set; }
+        public virtual VideoStreamInfo VideoFormat { get; protected set; }
+        /// <summary>
+        ///     Gets the duration of the video.
+        /// </summary>
+        public virtual TimeSpan? Duration => VideoFormat.Duration;
         /// <summary>
         ///     Gets the current frame index.
         /// </summary>
         public int FrameIndex { get; private set; }
-        /// <summary>
-        ///     Gets the duration of the video.
-        /// </summary>
-        public TimeSpan? Duration { get; private set; }
         public bool CanRead => true;
         public bool CanWrite => false;
 
