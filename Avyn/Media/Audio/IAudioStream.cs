@@ -23,14 +23,6 @@ namespace Avyn.Media.Audio
 
 
         /// <summary>
-        ///     Reads audio samples into the sample buffer.
-        /// </summary>
-        /// <param name="buffer">Buffer to read into.</param>
-        /// <param name="offset">Offset of the buffer.</param>
-        /// <param name="count">Number of samples to read.</param>
-        /// <returns>How many samples were read.</returns>
-        int ReadSamples(short[] buffer, int offset, int count);
-        /// <summary>
         ///     Reads normalized audio sample into a sample buffer.
         /// </summary>
         /// <param name="buffer">Buffer to read into.</param>
@@ -38,14 +30,6 @@ namespace Avyn.Media.Audio
         /// <param name="count">Number of samples to read.</param>
         /// <returns>How many samples were read.</returns>
         int ReadSamples(float[] buffer, int offset, int count);
-
-        /// <summary>
-        ///     Writes samples from the sample buffer.
-        /// </summary>
-        /// <param name="buffer">Buffer to write from.</param>
-        /// <param name="offset">Offset of the buffer.</param>
-        /// <param name="count">Number of samples to read.</param>
-        void WriteSamples(short[] buffer, int offset, int count);
         /// <summary>
         ///     Writes samples from the normalized sample buffer.
         /// </summary>

@@ -34,19 +34,6 @@ namespace Avyn.Media.Audio
         //
         // READING METHODS
         //
-        public int ReadSamples(short[] buffer, int offset, int count)
-        {
-            // Read audio data.
-            byte[] buf = new byte[count * 2];
-            int read = ReadSampleBytes(buf);
-
-            // Convert to short.
-            for (int i = 0; i < read; i += 2)
-            {
-                buffer[offset + i / 2] = (short)(buf[i + 0] | buf[i + 1] << 8);
-            }
-            return read / 2;
-        }
         public int ReadSamples(float[] buffer, int offset, int count)
         {
             // Read audio data.
@@ -83,7 +70,6 @@ namespace Avyn.Media.Audio
         //
         // WRITING METHODS
         //
-        public void WriteSamples(short[] buffer, int offset, int count) => throw new InvalidOperationException();
         public void WriteSamples(float[] buffer, int offset, int count) => throw new InvalidOperationException();
 
         public void Dispose()
