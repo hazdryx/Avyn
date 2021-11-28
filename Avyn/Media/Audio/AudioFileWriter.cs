@@ -17,8 +17,8 @@ namespace Avyn.Media.Audio
         {
             this.AudioFormat = info;
             ffmpeg = FFmpeg.Query(
-                "-f s16le -ac {0} -ar {1} -i - -f wav -c:a pcm_f32{4} -y @{2}",
-                info.Channels, info.SampleRate, filename, BitConverter.IsLittleEndian ? "le" : "be"
+                "-f s{5}le -ac {0} -ar {1} -i - -f wav -c:a pcm_f32{4} -y @{2}",
+                info.Channels, info.SampleRate, filename, BitConverter.IsLittleEndian ? "le" : "be", info.BitsPerSample
             );
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "AudioFileWriter")).Start();
         }
