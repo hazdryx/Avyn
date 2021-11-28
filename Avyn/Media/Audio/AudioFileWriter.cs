@@ -17,8 +17,8 @@ namespace Avyn.Media.Audio
         {
             this.AudioFormat = info;
             ffmpeg = FFmpeg.Query(
-                "-f s16le -ac {0} -ar {1} -i - -f wav -c:a pcm_s16le -y @{2}",
-                info.Channels, info.SampleRate, filename
+                "-f s16le -ac {0} -ar {1} -i - -f wav -c:a pcm_f32{4} -y @{2}",
+                info.Channels, info.SampleRate, filename, BitConverter.IsLittleEndian ? "le" : "be"
             );
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "AudioFileWriter")).Start();
         }
@@ -31,12 +31,14 @@ namespace Avyn.Media.Audio
         public void WriteSamples(float[] buffer, int offset, int count)
         {
             Stream stream = ffmpeg.StandardInput.BaseStream;
-            byte[] bytes = new byte[count * 2];
+            byte[] bytes = new byte[count * 4];
             for (int i = offset; i < count; i++)
             {
-                short s = (short) Math.Round(buffer[i] * short.MaxValue);
-                bytes[i * 2 + 0] = (byte)((s >> 0) & 0xFF);
-                bytes[i * 2 + 1] = (byte)((s >> 8) & 0xFF);
+                byte[] buf = BitConverter.GetBytes(buffer[i]);
+                bytes[i * 4 + 0] = buf[0];
+                bytes[i * 4 + 1] = buf[1];
+                bytes[i * 4 + 2] = buf[2];
+                bytes[i * 4 + 3] = buf[3];
             }
             stream.Write(bytes, 0, bytes.Length);
             stream.Flush();
