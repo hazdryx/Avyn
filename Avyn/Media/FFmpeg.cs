@@ -40,9 +40,10 @@ namespace Avyn.Media
                     FileName = "ffmpeg.exe",
                     Arguments = arguments,
                     UseShellExecute = false,
+                    CreateNoWindow = true,
                     RedirectStandardInput = true,
                     RedirectStandardError = true,
-                    RedirectStandardOutput = true,
+                    RedirectStandardOutput = true
                 }
             };
             ffmpeg.Start();
@@ -57,6 +58,7 @@ namespace Avyn.Media
         /// <param name="callback"></param>
         public static void DebugStandardError(Process ffmpeg, string header, Action<string> callback = null)
         {
+            Debug.WriteLine("UM?");
             StreamReader err = ffmpeg.StandardError;
             while (!ffmpeg.HasExited && !err.EndOfStream)
             {

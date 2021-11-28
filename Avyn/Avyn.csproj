@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/hazdryx/Avyn</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Product>Avyn</Product>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <Description>A .NET library for audio and video IO.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AnalysisLevel>latest</AnalysisLevel>
