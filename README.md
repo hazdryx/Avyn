@@ -5,4 +5,4 @@ A .NET library for audio and video IO.
 ![build](https://github.com/hazdryx/Avyn/actions/workflows/publish.yml/badge.svg)
 
 ## Known Issues
-- `AudioFileReader` reads in as 16 bits per sample only.
+- `AudioFileWriter` writes in as 16 bits per sample only.

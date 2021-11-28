@@ -25,7 +25,7 @@ namespace Avyn.Media.Audio
             Duration = info.Duration;
             AudioFormat = format;
 
-            ffmpeg = FFmpeg.Query("-i @{0} -f s16le -", filename);
+            ffmpeg = FFmpeg.Query("-i @{0} -f f32{1} -", filename, BitConverter.IsLittleEndian ? "le" : "be");
             new Task(() => FFmpeg.DebugStandardError(ffmpeg, "AudioFileReader")).Start();
         }
 
@@ -37,15 +37,15 @@ namespace Avyn.Media.Audio
         public int ReadSamples(float[] buffer, int offset, int count)
         {
             // Read audio data.
-            byte[] buf = new byte[count * 2];
+            byte[] buf = new byte[count * 4];
             int read = ReadSampleBytes(buf);
 
             // Convert to short.
-            for (int i = 0; i < read; i += 2)
+            for (int i = 0; i < read; i += 4)
             {
-                buffer[offset + i / 2] = (short)(buf[i + 0] | buf[i + 1] << 8) / (float)short.MaxValue;
+                buffer[offset + i / 4] = BitConverter.ToSingle(buf, i);
             }
-            return read / 2;
+            return read / 4;
         }
         private int ReadSampleBytes(byte[] buf)
         {
