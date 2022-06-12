@@ -10,7 +10,7 @@ namespace Avyn.Media.Video
         /// <summary>
         ///     An approximation of a high-quality H.264 compression ratio.
         /// </summary>
-        public const double CompressionRatio = 12;
+        public const double CompressionRatio = 8;
 
         /// <summary>
         ///     Gets the start time of the video.
@@ -59,6 +59,18 @@ namespace Avyn.Media.Video
             this.Height = height;
             this.FrameRate = frameRate;
             this.Bitrate = bitrate;
+            this.IsEmpty = false;
+        }
+        public VideoStreamInfo(int width, int height, double frameRate, TimeSpan? duration, double compressionRatio, bool hwaccel)
+        {
+            this.StartTime = TimeSpan.Zero;
+            this.Duration = duration;
+            this.Codec = hwaccel ? "h264_nvenc" : "h264";
+            this.PixelFormat = "yuv420p";
+            this.Width = width;
+            this.Height = height;
+            this.FrameRate = frameRate;
+            this.Bitrate = (int) Math.Round(Width * Height * frameRate / compressionRatio);
             this.IsEmpty = false;
         }
         public VideoStreamInfo(int width, int height, double frameRate, TimeSpan? duration)
