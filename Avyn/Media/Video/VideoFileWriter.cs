@@ -28,6 +28,19 @@ namespace Avyn.Media.Video
         public bool CanRead => false;
         public bool CanWrite => true;
 
+        public VideoFileWriter(VideoStreamInfo info, string filename, int outputHeight)
+        {
+            this.VideoFormat = info;
+
+            int outputWidth = outputHeight * info.Width / info.Height;
+
+            ffmpeg = FFmpeg.Query(
+                "-f rawvideo -c:v rawvideo -pix_fmt bgra -s {0}x{1} -r {2} -i - -vf scale={7}:{8}:flags=lanczos -c:v {3} -pix_fmt {4} -b:v {5} -y @{6}",
+                info.Width, info.Height, info.FrameRate, info.Codec, info.PixelFormat, info.Bitrate, filename, outputWidth, outputHeight
+            );
+            ffmpeg.Start();
+            new Task(() => FFmpeg.DebugStandardError(ffmpeg, "VideoFileWriter")).Start();
+        }
         public VideoFileWriter(VideoStreamInfo info, string filename)
         {
             this.VideoFormat = info;
